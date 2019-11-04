@@ -6,13 +6,21 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
 @Serializable
-private data class Issue(val title: String, val body: String)
+private data class Issue(
+    val title: String,
+    val body: String,
+    val labels: List<String> = listOf()
+)
 
 suspend fun main() {
     val client = HttpClient(OkHttp)
 
     val issues = listOf(
-        Issue("title", "body")
+        Issue(
+            title = "title",
+            body = "body",
+            labels = listOf("bug")
+        )
     )
 
     issues.forEach { issue ->
